@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ChatGPT Archive - Settings</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      background: #f9fafb;
+    }
+    
+    .container {
+      background: white;
+      border-radius: 12px;
+      padding: 32px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .logo {
+      width: 32px;
+      height: 32px;
+      background: #10a37f;
+      border-radius: 6px;
+      margin-right: 12px;
+    }
+    
+    .title {
+      font-size: 24px;
+      font-weight: 600;
+      color: #111827;
+    }
+    
+    .section {
+      margin-bottom: 32px;
+    }
+    
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 16px;
+    }
+    
+    .setting-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid #f3f4f6;
+    }
+    
+    .setting-item:last-child {
+      border-bottom: none;
+    }
+    
+    .setting-info {
+      flex: 1;
+    }
+    
+    .setting-label {
+      font-weight: 500;
+      color: #111827;
+      margin-bottom: 4px;
+    }
+    
+    .setting-description {
+      font-size: 14px;
+      color: #6b7280;
+    }
+    
+    .toggle {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      background: #d1d5db;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    
+    .toggle.active {
+      background: #10a37f;
+    }
+    
+    .toggle::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      transition: transform 0.2s;
+    }
+    
+    .toggle.active::after {
+      transform: translateX(20px);
+    }
+    
+    .button-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    
+    button {
+      padding: 10px 20px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      background: white;
+      color: #374151;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    
+    button:hover {
+      background: #f9fafb;
+    }
+    
+    .primary {
+      background: #10a37f;
+      color: white;
+      border-color: #10a37f;
+    }
+    
+    .primary:hover {
+      background: #0d8f6f;
+    }
+    
+    .danger {
+      background: #ef4444;
+      color: white;
+      border-color: #ef4444;
+    }
+    
+    .danger:hover {
+      background: #dc2626;
+    }
+    
+    .stats {
+      background: #f7f7f8;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+    }
+    
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 16px;
+    }
+    
+    .stat-item {
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-size: 24px;
+      font-weight: 600;
+      color: #10a37f;
+    }
+    
+    .stat-label {
+      font-size: 14px;
+      color: #6b7280;
+      margin-top: 4px;
+    }
+    
+    .status {
+      padding: 12px;
+      border-radius: 6px;
+      margin-top: 16px;
+      font-size: 14px;
+      display: none;
+    }
+    
+    .status.success {
+      background: #d1fae5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }
+    
+    .status.error {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fca5a5;
+    }
+    
+    input[type="file"] {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo"></div>
+      <div class="title">ChatGPT Archive Settings</div>
+    </div>
+    
+    <div class="section">
+      <div class="section-title">Statistics</div>
+      <div class="stats">
+        <div class="stat-grid">
+          <div class="stat-item">
+            <div class="stat-value" id="totalChats">-</div>
+            <div class="stat-label">Total Chats</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="totalMessages">-</div>
+            <div class="stat-label">Total Messages</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="storageUsed">-</div>
+            <div class="stat-label">Storage Used</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section">
+      <div class="section-title">General Settings</div>
+      
+      <div class="setting-item">
+        <div class="setting-info">
+          <div class="setting-label">Auto-save conversations</div>
+          <div class="setting-description">Automatically save new ChatGPT conversations as you chat</div>
+        </div>
+        <div class="toggle" id="autoSaveToggle"></div>
+      </div>
+      
+      <div class="setting-item">
+        <div class="setting-info">
+          <div class="setting-label">Dark mode in viewer</div>
+          <div class="setting-description">Use dark theme in the offline viewer by default</div>
+        </div>
+        <div class="toggle" id="darkModeToggle"></div>
+      </div>
+    </div>
+    
+    <div class="section">
+      <div class="section-title">Data Management</div>
+      
+      <div class="button-group">
+        <button id="exportBtn" class="primary">Export All Data</button>
+        <button id="importBtn">Import Data</button>
+        <button id="viewOfflineBtn">View Offline Archive</button>
+      </div>
+      
+      <div class="button-group">
+        <button id="clearAllBtn" class="danger">Clear All Data</button>
+      </div>
+      
+      <input type="file" id="importFile" accept=".json">
+      
+      <div class="status" id="status"></div>
+    </div>
+    
+    <div class="section">
+      <div class="section-title">About</div>
+      <p style="color: #6b7280; line-height: 1.6;">
+        ChatGPT Archive automatically saves your conversations from chat.openai.com and lets you browse them offline. 
+        All data is stored locally on your device and never sent to external servers.
+      </p>
+      <p style="color: #6b7280; line-height: 1.6; margin-top: 12px;">
+        <strong>Version:</strong> 1.0.0<br>
+        <strong>Privacy:</strong> Your data never leaves your computer
+      </p>
+    </div>
+  </div>
+  
+  <script src="options.js"></script>
+</body>
+</html>

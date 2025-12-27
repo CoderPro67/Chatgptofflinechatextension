@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChatGPT Archive - Offline Viewer</title>
+  <link rel="stylesheet" href="viewer.css">
+</head>
+<body class="light-mode">
+  <div class="app">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <div class="logo-icon"></div>
+          <span>ChatGPT Archive</span>
+        </div>
+        <div class="sidebar-controls">
+          <button id="themeToggle" class="icon-button" title="Toggle theme">🌙</button>
+          <button id="searchToggle" class="icon-button" title="Search">🔍</button>
+        </div>
+      </div>
+      
+      <div class="search-container" id="searchContainer" style="display: none;">
+        <input type="text" id="searchInput" placeholder="Search conversations..." />
+        <button id="clearSearch" class="clear-search">×</button>
+      </div>
+      
+      <div class="conversation-list" id="conversationList">
+        <div class="loading">Loading conversations...</div>
+      </div>
+      
+      <div class="sidebar-footer">
+        <button id="exportBtn" class="footer-button">Export All</button>
+        <button id="importBtn" class="footer-button">Import</button>
+        <input type="file" id="importFile" accept=".json" style="display: none;">
+      </div>
+    </div>
+    
+    <!-- Main Chat Area -->
+    <div class="main-content">
+      <div class="chat-header">
+        <h1 id="chatTitle">Select a conversation</h1>
+        <div class="chat-controls">
+          <button id="deleteChat" class="icon-button" title="Delete conversation" style="display: none;">🗑️</button>
+        </div>
+      </div>
+      
+      <div class="chat-container" id="chatContainer">
+        <div class="welcome-screen">
+          <div class="welcome-content">
+            <h2>ChatGPT Archive</h2>
+            <p>Your conversations are saved locally and available offline.</p>
+            <p>Select a conversation from the sidebar to start browsing.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Templates -->
+  <template id="conversationItemTemplate">
+    <div class="conversation-item" data-id="">
+      <div class="conversation-title"></div>
+      <div class="conversation-date"></div>
+    </div>
+  </template>
+  
+  <template id="messageTemplate">
+    <div class="message" data-role="">
+      <div class="message-avatar">
+        <div class="avatar"></div>
+      </div>
+      <div class="message-content">
+        <div class="message-text"></div>
+      </div>
+    </div>
+  </template>
+  
+  <script src="viewer.js"></script>
+</body>
+</html>

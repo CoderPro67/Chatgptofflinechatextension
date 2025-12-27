@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      width: 300px;
+      padding: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+    }
+    
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    
+    .logo {
+      width: 24px;
+      height: 24px;
+      background: #10a37f;
+      border-radius: 4px;
+      margin-right: 8px;
+    }
+    
+    .title {
+      font-weight: 600;
+      font-size: 16px;
+    }
+    
+    .stats {
+      background: #f7f7f8;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    
+    .stat-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+    
+    .stat-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    button {
+      padding: 10px 16px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      background: white;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    
+    button:hover {
+      background: #f9fafb;
+    }
+    
+    .primary {
+      background: #10a37f;
+      color: white;
+      border-color: #10a37f;
+    }
+    
+    .primary:hover {
+      background: #0d8f6f;
+    }
+    
+    .status {
+      font-size: 12px;
+      color: #6b7280;
+      text-align: center;
+      margin-top: 12px;
+    }
+    
+    .loading {
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo"></div>
+    <div class="title">ChatGPT Archive</div>
+  </div>
+  
+  <div class="stats">
+    <div class="stat-item">
+      <span>Saved Chats:</span>
+      <span id="chatCount">-</span>
+    </div>
+    <div class="stat-item">
+      <span>Last Saved:</span>
+      <span id="lastSaved">-</span>
+    </div>
+  </div>
+  
+  <div class="buttons">
+    <button id="viewOffline" class="primary">View Offline Archive</button>
+    <button id="saveNow">Save Current Chat</button>
+    <button id="exportData">Export All Data</button>
+    <button id="openOptions">Settings</button>
+  </div>
+  
+  <div class="status" id="status">Ready</div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
